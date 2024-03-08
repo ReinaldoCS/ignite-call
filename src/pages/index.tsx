@@ -1,7 +1,7 @@
-import { Heading,Text } from "@ignite-ui/react";
-import { Roboto } from "next/font/google";
+import { Heading, Text } from '@ignight-ui/react'
+import { Roboto } from 'next/font/google'
 
-const roboto = Roboto({subsets: ['latin'], weight: ['400', '500', '700']});
+const roboto = Roboto({ subsets: ['latin'], weight: ['400', '500', '700'] })
 
 export default function Home() {
   return (
@@ -9,5 +9,5 @@ export default function Home() {
       <Heading>Hello world</Heading>
       <Text>Testing</Text>
     </main>
-  );
+  )
 }
