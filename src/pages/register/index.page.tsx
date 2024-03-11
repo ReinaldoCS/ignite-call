@@ -50,6 +50,8 @@ export default function Register() {
         name: data.name,
         username: data.username,
       })
+
+      await router.push('/register/connect-calendar')
     } catch (error) {
       if (error instanceof AxiosError && error.response?.data.message) {
         alert(error.response.data.message)
@@ -69,9 +71,8 @@ export default function Register() {
           Precisamos de algumas informações para criar seu perfil! Ah, você pode
           editar essas informações depois.
         </Text>
+        <MultiStep size={4} currentStep={1} />
       </Header>
-
-      <MultiStep size={4} currentStep={1} />
 
       <Form as="form" onSubmit={handleSubmit(handleRegister)}>
         <label>
