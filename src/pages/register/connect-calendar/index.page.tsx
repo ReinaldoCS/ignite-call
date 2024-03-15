@@ -7,7 +7,7 @@ import { Container, Header } from '../styles'
 import { AuthError, ConnectBox, ConnectItem } from './styles'
 
 export default function ConnectCalendar() {
-  const { data: session, status } = useSession()
+  const { status } = useSession()
   const router = useRouter()
 
   const hasAuthError = !!router.query.error
@@ -16,11 +16,6 @@ export default function ConnectCalendar() {
   const handleConnectCalendar = async () => {
     await signIn('google', { callbackUrl: '/register/connect-calendar' })
   }
-
-  console.log(status)
-  console.log(session)
-
-  // const handleRegister = async (data: RegisterFormData) => {}
 
   return (
     <Container>
