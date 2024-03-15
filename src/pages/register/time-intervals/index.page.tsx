@@ -36,8 +36,8 @@ export default function TimeIntervals() {
               <Checkbox /> <Text>Segunda-feira</Text>
             </IntervalDay>
             <IntervalInputs>
-              <TextInput type="time" step={60} />
-              <TextInput type="time" step={60} />
+              <TextInput type="time" step={60} size="sm" />
+              <TextInput type="time" step={60} size="sm" />
             </IntervalInputs>
           </IntervalItem>
 
@@ -46,8 +46,8 @@ export default function TimeIntervals() {
               <Checkbox /> <Text>Terça-feira</Text>
             </IntervalDay>
             <IntervalInputs>
-              <TextInput type="time" step={60} />
-              <TextInput type="time" step={60} />
+              <TextInput type="time" step={60} size="sm" />
+              <TextInput type="time" step={60} size="sm" />
             </IntervalInputs>
           </IntervalItem>
         </IntervalsContainer>

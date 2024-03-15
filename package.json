@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
-    "@ignight-ui/react": "^3.0.2",
+    "@ignight-ui/react": "^3.1.0",
     "@phosphor-icons/react": "^2.0.15",
     "@prisma/client": "^5.10.2",
     "axios": "^1.6.7",
