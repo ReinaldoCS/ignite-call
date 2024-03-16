@@ -1,3 +1,4 @@
+import { zodResolver } from '@hookform/resolvers/zod'
 import {
   Button,
   Checkbox,
@@ -14,6 +15,7 @@ import { getWeekDays } from '@/utils/get-week-days'
 
 import { Container, Header } from '../styles'
 import {
+  FormError,
   IntervalBox,
   IntervalDay,
   IntervalInputs,
@@ -21,7 +23,26 @@ import {
   IntervalsContainer,
 } from './styles'
 
-const timeIntervalsFormSchema = z.object({})
+const timeIntervalsFormSchema = z.object({
+  intervals: z
+    .array(
+      z.object({
+        weekDay: z.number().min(0).max(6),
+        enabled: z.boolean(),
+        startTime: z.string(),
+        endTime: z.string(),
+      }),
+    )
+    .length(7)
+    .transform((intervals) =>
+      intervals.filter(({ enabled }) => enabled === true),
+    )
+    .refine((intervals) => intervals.length > 0, {
+      message: 'Você precisa selecionar pelo menos um dia da semana.',
+    }),
+})
+
+type TypeIntervalsFormData = z.infer<typeof timeIntervalsFormSchema>
 
 export default function TimeIntervals() {
   const {
@@ -30,7 +51,8 @@ export default function TimeIntervals() {
     control,
     watch,
     formState: { isSubmitting, errors },
-  } = useForm({
+  } = useForm<TypeIntervalsFormData>({
+    resolver: zodResolver(timeIntervalsFormSchema),
     defaultValues: {
       intervals: [
         { weekDay: 0, enabled: false, startTime: '08:00', endTime: '18:00' },
@@ -52,7 +74,10 @@ export default function TimeIntervals() {
     control,
   })
 
-  const handleSetTimeIntervals = () => {}
+  const handleSetTimeIntervals = async (data: TypeIntervalsFormData) => {
+    console.log(data)
+  }
+
   return (
     <Container>
       <Header>
@@ -103,7 +128,11 @@ export default function TimeIntervals() {
           ))}
         </IntervalsContainer>
 
-        <Button>
+        {errors.intervals?.root && (
+          <FormError size="sm">{errors.intervals.root.message}</FormError>
+        )}
+
+        <Button disabled={isSubmitting}>
           Próximo passo <ArrowRight />
         </Button>
       </IntervalBox>
