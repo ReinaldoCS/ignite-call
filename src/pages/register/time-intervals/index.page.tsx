@@ -11,6 +11,7 @@ import { ArrowRight } from '@phosphor-icons/react'
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import { z } from 'zod'
 
+import { convertTimeStringToMinutes } from '@/utils/convert-time-string-to-minutes'
 import { getWeekDays } from '@/utils/get-week-days'
 
 import { Container, Header } from '../styles'
@@ -39,10 +40,29 @@ const timeIntervalsFormSchema = z.object({
     )
     .refine((intervals) => intervals.length > 0, {
       message: 'Você precisa selecionar pelo menos um dia da semana.',
-    }),
+    })
+    .transform((intervals) =>
+      intervals.map((interval) => ({
+        weekDay: interval.weekDay,
+        startTimeInMinutes: convertTimeStringToMinutes(interval.startTime),
+        endTimeInMinutes: convertTimeStringToMinutes(interval.endTime),
+      })),
+    )
+    .refine(
+      (internal) =>
+        internal.every(
+          (internal) =>
+            internal.endTimeInMinutes - 60 >= internal.startTimeInMinutes,
+        ),
+      {
+        message:
+          'O tempo de término deve ser pelo menos 1h distante do início.',
+      },
+    ),
 })
 
-type TypeIntervalsFormData = z.infer<typeof timeIntervalsFormSchema>
+type TypeIntervalsFormInput = z.input<typeof timeIntervalsFormSchema>
+type TypeIntervalsFormOutput = z.output<typeof timeIntervalsFormSchema> // mesmo resultado o z.infer porém mais semântico
 
 export default function TimeIntervals() {
   const {
@@ -51,7 +71,7 @@ export default function TimeIntervals() {
     control,
     watch,
     formState: { isSubmitting, errors },
-  } = useForm<TypeIntervalsFormData>({
+  } = useForm<TypeIntervalsFormInput, undefined, TypeIntervalsFormOutput>({
     resolver: zodResolver(timeIntervalsFormSchema),
     defaultValues: {
       intervals: [
@@ -74,7 +94,7 @@ export default function TimeIntervals() {
     control,
   })
 
-  const handleSetTimeIntervals = async (data: TypeIntervalsFormData) => {
+  const handleSetTimeIntervals = async (data: TypeIntervalsFormOutput) => {
     console.log(data)
   }
 
@@ -124,6 +144,12 @@ export default function TimeIntervals() {
                   {...register(`intervals.${index}.endTime`)}
                 />
               </IntervalInputs>
+              {Array.isArray(errors?.intervals) &&
+                errors?.intervals[index]?.message && (
+                  <FormError size="sm">
+                    {errors.intervals[index].message}
+                  </FormError>
+                )}
             </IntervalItem>
           ))}
         </IntervalsContainer>
