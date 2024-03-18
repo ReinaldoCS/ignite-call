@@ -11,6 +11,7 @@ import { ArrowRight } from '@phosphor-icons/react'
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import { z } from 'zod'
 
+import { api } from '@/lib/axios'
 import { convertTimeStringToMinutes } from '@/utils/convert-time-string-to-minutes'
 import { getWeekDays } from '@/utils/get-week-days'
 
@@ -96,6 +97,7 @@ export default function TimeIntervals() {
 
   const handleSetTimeIntervals = async (data: TypeIntervalsFormOutput) => {
     console.log(data)
+    await api.post('/users/time-intervals', data)
   }
 
   return (
