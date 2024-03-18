@@ -8,6 +8,7 @@ import {
   TextInput,
 } from '@ignight-ui/react'
 import { ArrowRight } from '@phosphor-icons/react'
+import { useRouter } from 'next/router'
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import { z } from 'zod'
 
@@ -95,8 +96,11 @@ export default function TimeIntervals() {
     control,
   })
 
+  const router = useRouter()
+
   const handleSetTimeIntervals = async (data: TypeIntervalsFormOutput) => {
     await api.post('/users/time-intervals', data)
+    await router.push('/register/update-profile')
   }
 
   return (
