@@ -33,7 +33,7 @@ export default function ConnectCalendar() {
           <Text as="span">Google Calendar</Text>
 
           {isSignedIn ? (
-            <Button size="sm" disabled>
+            <Button size="sm" disabled type="button">
               Conectado
               <Check />
             </Button>
@@ -41,6 +41,7 @@ export default function ConnectCalendar() {
             <Button
               variant="secondary"
               size="sm"
+              type="button"
               onClick={handleConnectCalendar}
             >
               Conectar
@@ -56,7 +57,10 @@ export default function ConnectCalendar() {
           </AuthError>
         )}
 
-        <Button disabled={!isSignedIn}>
+        <Button
+          disabled={!isSignedIn}
+          onClick={() => router.push('/register/time-intervals')}
+        >
           Próximo passo <ArrowRight />
         </Button>
       </ConnectBox>
