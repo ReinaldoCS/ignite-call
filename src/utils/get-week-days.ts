@@ -1,14 +1,17 @@
-export function getWeekDays() {
-  const diasSemana = []
-  const dtf = new Intl.DateTimeFormat('pt-BR', { weekday: 'long' })
+interface GetWeekDaysParams {
+  short?: boolean
+}
 
-  for (let i = 0; i <= 6; i++) {
-    const data = new Date(0, 0, i)
-    const diaSemana = dtf.format(data)
-    const diaSemanaFormatado =
-      diaSemana.charAt(0).toUpperCase() + diaSemana.slice(1)
-    diasSemana.push(diaSemanaFormatado)
-  }
+export function getWeekDays({ short = false }: GetWeekDaysParams = {}) {
+  const formatter = new Intl.DateTimeFormat('pt-BR', { weekday: 'long' })
 
-  return diasSemana
+  return Array.from(Array(7).keys())
+    .map((day) => formatter.format(new Date(Date.UTC(2021, 5, day))))
+    .map((weekDay) => {
+      if (short) {
+        return weekDay.substring(0, 3).toUpperCase()
+      }
+
+      return weekDay.substring(0, 1).toUpperCase().concat(weekDay.substring(1))
+    })
 }

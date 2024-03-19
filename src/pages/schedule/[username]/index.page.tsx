@@ -3,6 +3,7 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 
 import { prisma } from '@/lib/prisma'
 
+import { CalendarStep } from './ScheduleForm/CalendarStep'
 import { Container, UserHeader } from './styles'
 
 interface ScheduleProps {
@@ -20,6 +21,8 @@ export default function Schedule({ user }: ScheduleProps) {
         <Avatar src={user.avatarUrl} alt={user.name} />
         <Heading>{user.name}</Heading>
         <Text>{user.bio}</Text>
+
+        <CalendarStep />
       </UserHeader>
     </Container>
   )
