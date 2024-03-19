@@ -3,6 +3,7 @@ import { CaretLeft, CaretRight } from '@phosphor-icons/react'
 import { getWeekDays } from '@/utils/get-week-days'
 
 import {
+  ButtonAction,
   CalendarActions,
   CalendarBody,
   CalendarContainer,
@@ -21,12 +22,12 @@ export function Calendar() {
           Março <span>2024</span>
         </CalendarTitle>
         <CalendarActions>
-          <button>
+          <ButtonAction>
             <CaretLeft />
-          </button>
-          <button>
+          </ButtonAction>
+          <ButtonAction>
             <CaretRight />
-          </button>
+          </ButtonAction>
         </CalendarActions>
       </CalendarHeader>
 
@@ -48,10 +49,33 @@ export function Calendar() {
               <CalendarDay>1</CalendarDay>
             </td>
             <td>
-              <CalendarDay>2</CalendarDay>
+              <CalendarDay disabled>2</CalendarDay>
             </td>
             <td>
               <CalendarDay>3</CalendarDay>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <CalendarDay disabled>4</CalendarDay>
+            </td>
+            <td>
+              <CalendarDay>5</CalendarDay>
+            </td>
+            <td>
+              <CalendarDay>6</CalendarDay>
+            </td>
+            <td>
+              <CalendarDay>7</CalendarDay>
+            </td>
+            <td>
+              <CalendarDay>7</CalendarDay>
+            </td>
+            <td>
+              <CalendarDay>9</CalendarDay>
+            </td>
+            <td>
+              <CalendarDay disabled>10</CalendarDay>
             </td>
           </tr>
         </tbody>
