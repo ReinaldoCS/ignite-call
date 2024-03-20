@@ -1,4 +1,6 @@
 import { CaretLeft, CaretRight } from '@phosphor-icons/react'
+import dayjs from 'dayjs'
+import { useState } from 'react'
 
 import { getWeekDays } from '@/utils/get-week-days'
 
@@ -13,19 +15,38 @@ import {
 } from './styles'
 
 export function Calendar() {
+  const [currentDate, setCurrentDate] = useState(() => {
+    return dayjs().set('date', 1)
+  })
+
+  const currentMonth = currentDate.format('MMMM')
+  const currentYear = currentDate.format('YYYY')
+
   const shortWeekDays = getWeekDays({ short: true })
+
+  const handlePreviousMonth = () => {
+    const previousMonthDate = currentDate.subtract(1, 'month')
+
+    setCurrentDate(previousMonthDate)
+  }
+
+  const handleNextMonth = () => {
+    const nextMonthDate = currentDate.add(1, 'month')
+
+    setCurrentDate(nextMonthDate)
+  }
 
   return (
     <CalendarContainer>
       <CalendarHeader>
         <CalendarTitle>
-          Março <span>2024</span>
+          {currentMonth} <span>{currentYear}</span>
         </CalendarTitle>
         <CalendarActions>
-          <ButtonAction>
+          <ButtonAction onClick={handlePreviousMonth}>
             <CaretLeft />
           </ButtonAction>
-          <ButtonAction>
+          <ButtonAction onClick={handleNextMonth}>
             <CaretRight />
           </ButtonAction>
         </CalendarActions>
