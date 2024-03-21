@@ -1,5 +1,6 @@
 import { Heading, Text } from '@ignight-ui/react'
 import Image from 'next/image'
+import { NextSeo } from 'next-seo'
 
 import previewImage from '@/assets/app-preview.png'
 
@@ -8,28 +9,34 @@ import { Container, Hero, Preview } from './styles'
 
 export default function Home() {
   return (
-    <Container>
-      <Hero>
-        <Heading as="h1" size="4xl">
-          Agendamento descomplicado
-        </Heading>
-        <Text size="xl">
-          Conecte seu calendário e permita que as pessoas marquem agendamentos
-          no seu tempo livre.
-        </Text>
+    <>
+      <NextSeo
+        title="Descomplique sua agenda | Ignite Call"
+        description="Conecte seu calendário e permita que as pessoas marquem agendamentos no seu tempo livre."
+      />
+      <Container>
+        <Hero>
+          <Heading as="h1" size="4xl">
+            Agendamento descomplicado
+          </Heading>
+          <Text size="xl">
+            Conecte seu calendário e permita que as pessoas marquem agendamentos
+            no seu tempo livre.
+          </Text>
 
-        <ClaimUsernameForm />
-      </Hero>
+          <ClaimUsernameForm />
+        </Hero>
 
-      <Preview>
-        <Image
-          src={previewImage}
-          alt="Calendario simbolizando aplicação em funcionamento"
-          height={442}
-          quality={100}
-          priority
-        />
-      </Preview>
-    </Container>
+        <Preview>
+          <Image
+            src={previewImage}
+            alt="Calendário simbolizando aplicação em funcionamento"
+            height={442}
+            quality={100}
+            priority
+          />
+        </Preview>
+      </Container>
+    </>
   )
 }
