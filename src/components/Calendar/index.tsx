@@ -1,3 +1,5 @@
+'use client'
+
 import { CaretLeft, CaretRight } from '@phosphor-icons/react/dist/ssr'
 import { useQuery } from '@tanstack/react-query'
 import dayjs from 'dayjs'
