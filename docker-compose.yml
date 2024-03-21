@@ -1,19 +1,12 @@
-version: '3.8'
+version: "3.8"
 
 services:
-  mysql:
-    image: mysql:latest
-    container_name: ignite-call-my-sql
+  postgres-ignite-call:
+    image: bitnami/postgresql:latest
+    container_name: ignite-call-postgres
     ports:
-      - "3306:3306"
-    volumes:
-      - mysql_data:/var/lib/mysql
+      - "5432:5432"
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: ignite_call
-      MYSQL_USER: podman
-      MYSQL_PASSWORD: podman
-
-volumes:
-  mysql_data:
-    name: ignite-call-volume
+      POSTGRESQL_DATABASE: ignite_call
+      POSTGRESQL_USERNAME: podman
+      POSTGRESQL_PASSWORD: postgres
