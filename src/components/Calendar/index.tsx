@@ -1,4 +1,4 @@
-import { CaretLeft, CaretRight } from '@phosphor-icons/react'
+// import { CaretLeft, CaretRight } from '@phosphor-icons/react'
 import { useQuery } from '@tanstack/react-query'
 import dayjs from 'dayjs'
 import { useRouter } from 'next/router'
@@ -139,10 +139,12 @@ export function Calendar({ onDateSelect }: CalendarProps) {
         </CalendarTitle>
         <CalendarActions>
           <ButtonAction onClick={handlePreviousMonth} title="Mês anterior">
-            <CaretLeft />
+            {/* <CaretLeft /> */}
+            Anterior
           </ButtonAction>
           <ButtonAction onClick={handleNextMonth} title="Próximo mês">
-            <CaretRight />
+            {/* <CaretRight /> */}
+            proximo
           </ButtonAction>
         </CalendarActions>
       </CalendarHeader>

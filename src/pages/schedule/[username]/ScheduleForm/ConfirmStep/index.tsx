@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Button, Text, TextArea, TextInput } from '@ignight-ui/react'
-import { CalendarBlank, Clock } from '@phosphor-icons/react'
+// import { CalendarBlank, Clock } from '@phosphor-icons/react'
 import dayjs from 'dayjs'
 import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
@@ -67,11 +67,11 @@ export function ConfirmStep({
     >
       <ConfirmFormHeader>
         <ConfirmFormText>
-          <CalendarBlank />
+          {/* <CalendarBlank /> */}
           {describedDate}
         </ConfirmFormText>
         <ConfirmFormText>
-          <Clock />
+          {/* <Clock /> */}
           {describedTime}
         </ConfirmFormText>
       </ConfirmFormHeader>
