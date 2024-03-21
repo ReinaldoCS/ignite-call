@@ -7,7 +7,7 @@ import {
   Text,
   TextInput,
 } from '@ignight-ui/react'
-import { ArrowRight } from '@phosphor-icons/react'
+import { ArrowRight } from '@phosphor-icons/react/dist/ssr'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
