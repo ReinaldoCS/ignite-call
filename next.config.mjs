@@ -7,6 +7,9 @@ const nextConfig = {
       transform: '@phosphor-icons/react/{{member}}',
     },
   },
+  experimental: {
+    optimizePackageImports: ['@phosphor-icons/react'],
+  },
 }
 
 export default nextConfig

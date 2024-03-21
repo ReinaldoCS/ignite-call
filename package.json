@@ -37,13 +37,5 @@
     "eslint-plugin-simple-import-sort": "^12.0.0",
     "prisma": "^5.10.2",
     "typescript": "^5"
-  },
-  "exports": {
-    ".": {
-      "import": "./dist/index.es.js"
-    },
-    "./*": {
-      "import": "./dist/icons/*.es.js"
-    }
   }
 }
