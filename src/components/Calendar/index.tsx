@@ -30,11 +30,10 @@ interface CalendarWeek {
 type CalendarWeeks = CalendarWeek[]
 
 interface CalendarProps {
-  selectedDate: Date | null
   onDateSelect: (date: Date) => void
 }
 
-export function Calendar({ selectedDate, onDateSelect }: CalendarProps) {
+export function Calendar({ onDateSelect }: CalendarProps) {
   const router = useRouter()
   const username = String(router.query.username)
 
