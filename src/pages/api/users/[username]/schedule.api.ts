@@ -1,7 +1,9 @@
 import dayjs from 'dayjs'
+import { google } from 'googleapis'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { z } from 'zod'
 
+import { getGoogleOAuthToken } from '@/lib/google'
 import { prisma } from '@/lib/prisma'
 
 // http://localhost:3333/api/users/reinaldocs/shedule
@@ -22,7 +24,7 @@ export default async function handler(
   })
 
   if (!user) {
-    return res.status(404).json({ message: 'User does not exist.' })
+    return res.status(400).json({ message: 'User does not exist.' })
   }
 
   const createSchedulingBodySchema = z.object({
@@ -57,13 +59,42 @@ export default async function handler(
       .json({ message: 'There is another scheduling at the same time.' })
   }
 
-  await prisma.scheduling.create({
+  const scheduling = await prisma.scheduling.create({
     data: {
       user_id: user.id,
       name,
       email,
       observations,
       date: schedulingDate.toDate(),
+    },
+  })
+
+  const calendar = google.calendar({
+    version: 'v3',
+    auth: await getGoogleOAuthToken(user.id),
+  })
+
+  await calendar.events.insert({
+    calendarId: 'primary',
+    conferenceDataVersion: 1,
+    requestBody: {
+      summary: `Ignite Call: ${name}`,
+      description: observations,
+      start: {
+        dateTime: schedulingDate.format(),
+      },
+      end: {
+        dateTime: schedulingDate.add(1, 'hour').format(),
+      },
+      attendees: [{ email, displayName: name }],
+      conferenceData: {
+        createRequest: {
+          requestId: scheduling.id,
+          conferenceSolutionKey: {
+            type: 'hangoutsMeet',
+          },
+        },
+      },
     },
   })
 
