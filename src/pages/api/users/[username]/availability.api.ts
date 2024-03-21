@@ -13,7 +13,7 @@ export default async function handler(
 
   const username = String(req.query.username)
   const { date } = req.query
-  // http://localhost:3333/api/users/reinaldocs/availability?date=2023/02/20
+  // http://localhost:3000/api/users/reinaldocs/availability?date=2023/02/20
 
   if (!date) {
     return res.status(400).json({ message: 'Date not provided.' })

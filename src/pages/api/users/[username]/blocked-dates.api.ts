@@ -12,13 +12,11 @@ export default async function handler(
 
   const username = String(req.query.username)
   const { year, month } = req.query
-  // http://localhost:3333/api/users/reinaldocs/availability?date=2023/02/20
+  // http://localhost:3000/api/users/reinaldocs/blocked-dates?year=2024&month=04
 
   if (!year || !month) {
     return res.status(400).json({ message: 'Year or month not provided.' })
   }
-
-  console.log(typeof month)
 
   const user = await prisma.user.findUnique({
     where: {
