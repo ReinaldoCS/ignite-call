@@ -1,6 +1,5 @@
-'use client'
-
-import { CaretLeft, CaretRight } from '@phosphor-icons/react/dist/ssr'
+import { CaretLeft } from '@phosphor-icons/react/dist/ssr/CaretLeft'
+import { CaretRight } from '@phosphor-icons/react/dist/ssr/CaretRight'
 import { useQuery } from '@tanstack/react-query'
 import dayjs from 'dayjs'
 import { useRouter } from 'next/router'
