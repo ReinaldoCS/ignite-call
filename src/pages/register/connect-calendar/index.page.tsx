@@ -1,5 +1,6 @@
 import { Button, Heading, MultiStep, Text } from '@ignight-ui/react'
-import { ArrowRight, Check } from '@phosphor-icons/react'
+import { ArrowRight } from '@phosphor-icons/react/dist/ssr/ArrowRight'
+import { Check } from '@phosphor-icons/react/dist/ssr/Check'
 import { useRouter } from 'next/router'
 import { signIn, useSession } from 'next-auth/react'
 import { NextSeo } from 'next-seo'

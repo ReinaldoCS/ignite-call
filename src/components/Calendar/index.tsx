@@ -144,7 +144,6 @@ export function Calendar({ onDateSelect }: CalendarProps) {
           </ButtonAction>
           <ButtonAction onClick={handleNextMonth} title="Próximo mês">
             <CaretRight />
-            proximo
           </ButtonAction>
         </CalendarActions>
       </CalendarHeader>

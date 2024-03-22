@@ -7,7 +7,7 @@ import {
   Text,
   TextArea,
 } from '@ignight-ui/react'
-// import { ArrowRight } from '@phosphor-icons/react'
+import { ArrowRight } from '@phosphor-icons/react/dist/ssr/ArrowRight'
 import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
 import { getServerSession } from 'next-auth'
@@ -75,7 +75,7 @@ export default function UpdateProfile() {
 
           <Button disabled={isSubmitting}>
             Finalizar
-            {/* <ArrowRight /> */}
+            <ArrowRight />
           </Button>
         </ProfileBox>
       </Container>
