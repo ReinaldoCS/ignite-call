@@ -74,9 +74,13 @@ export default async function handler(
     auth: await getGoogleOAuthToken(user.id),
   })
 
+  console.log('email -> ', user.email)
+  console.log('displayName -> ', user.name)
+
   await calendar.events.insert({
     calendarId: 'primary',
     conferenceDataVersion: 1,
+    sendNotifications: true, // Envio de notificação via email
     requestBody: {
       summary: `Ignite Call: ${name}`,
       description: observations,
@@ -86,7 +90,10 @@ export default async function handler(
       end: {
         dateTime: schedulingDate.add(1, 'hour').format(),
       },
-      attendees: [{ email, displayName: name }],
+      attendees: [
+        { email: user.email, displayName: user.name }, // Email do usuário
+        { email, displayName: name }, // Participante
+      ],
       conferenceData: {
         createRequest: {
           requestId: scheduling.id,
